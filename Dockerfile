@@ -13,7 +13,8 @@ MAINTAINER Alex
 ENV TEAMSPEAK_URL http://dl.4players.de/ts/releases/3.0.10.3/teamspeak3-server_linux-amd64-3.0.10.3.tar.gz
 
 RUN apt-get update && apt-get install -qy mariadb-client-5.5
-RUN ln -s /usr/lib/x86_64-linux-gnu/libmysqlclient.so.18 /usr/lib/x86_64-linux-gnu/libmysqlclient.so.15
+ADD libmysqlclient.so.15.0.0 /usr/lib/x86_64-linux-gnu/libmysqlclient.so.15.0.0
+RUN ln -s /usr/lib/x86_64-linux-gnu/libmysqlclient.so.15.0.0 /usr/lib/x86_64-linux-gnu/libmysqlclient.so.15
 
 # Inject a Volume for any TS3-Data that needs to be persisted or to be accessible from the host. (e.g. for Backups)
 VOLUME ["/teamspeak3"]
