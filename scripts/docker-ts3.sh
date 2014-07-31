@@ -13,6 +13,8 @@ echo "2. Link the files-folder into the host-mounted volume. TODO Not implemente
 
 
 echo "3. Starting TS3-Server."
+echo "Sleeping 2 minutes.. in order to allow pipework to work"
+sleep 2m
 echo "Check if ts3server.ini exists in host-mounted volume."
 if [ -f $VOLUME/ts3server.ini ]
   then
