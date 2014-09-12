@@ -30,4 +30,4 @@ ENTRYPOINT ["/opt/scripts/docker-ts3.sh"]
 #CMD ["-w", "/teamspeak3/query_ip_whitelist.txt", "-b", "/teamspeak3/query_ip_blacklist.txt", "-o", "/teamspeak3/logs/", "-l", "/teamspeak3/"]
 
 # Expose the Standard TS3 port.
-EXPOSE 9987/udp
+EXPOSE 9987/udp 10011/tcp 30033/tcp
