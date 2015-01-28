@@ -1,10 +1,4 @@
-###############################################
-# Ubuntu with added Teamspeak 3 Server. 
-# Uses SQLite Database on default.
-###############################################
-
-# Using latest Ubuntu image as base
-FROM ubuntu
+FROM ubuntu:14.04
 
 MAINTAINER Martijn van Maurik <docker@vmaurik.nl>
 
