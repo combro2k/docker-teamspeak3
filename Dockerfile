@@ -6,7 +6,7 @@ MAINTAINER Martijn van Maurik <docker@vmaurik.nl>
 # Download Link of TS3 Server
 ENV TEAMSPEAK_URL http://dl.4players.de/ts/releases/3.0.11.3/teamspeak3-server_linux-amd64-3.0.11.3.tar.gz
 
-RUN apt-get update && apt-get install -qy mariadb-client-5.5
+RUN apt-get update && apt-get install -qy mariadb-client
 RUN ln -s /opt/teamspeak3-server_linux-amd64/redist/libmariadb.so.2 /usr/lib/x86_64-linux-gnu/libmariadb.so.2
 
 # Inject a Volume for any TS3-Data that needs to be persisted or to be accessible from the host. (e.g. for Backups)
