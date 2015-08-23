@@ -1,18 +1,18 @@
 ### docker-teamspeak3
 
-Ubuntu with TS3 Server.
+Debian with TS3 Server.
 
 #### Summary
-* Ubuntu
+* Debian
 * Teamspeak 3 Server
 * Some files can be injected to host:
   * query_ip_whitelist.txt
   * query_ip_blacklist.txt
   * logs
-  * files (Not yet)
+  * files
   * ts3server.sqlitedb 
   * licence (Maybe; Dont have one)
-  * ts3server.ini (Not tested)
+  * ts3server.ini
 
 #### Usage
   * Infos
