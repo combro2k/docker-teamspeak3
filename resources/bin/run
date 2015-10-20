@@ -1,0 +1,50 @@
+#!/bin/bash -e
+
+export VOLUME="/teamspeak3"
+export TS3SERVER="/opt/ts3server"
+
+echo " ----- docker-ts3 ------"
+
+echo -n "1. Check if ts3server.sqlitedb exists in host-mounted volume... "
+if [ -f "${VOLUME}/ts3server.sqlitedb" ]; then
+	if [ ! -L "${TS3SERVER}/ts3server.sqlitedb" ]; then
+	    ln -s ${VOLUME}/ts3server.sqlitedb ${TS3SERVER}/ts3server.sqlitedb
+    fi
+
+	echo "OK"
+else
+    echo "NONE"
+fi
+
+
+echo -n "2. Link the files-folder into the host-mounted volume... "
+[ ! -d "/${VOLUME}/files" ] && mkdir -p ${VOLUME}/files
+[ ! -L "${TS3SERVER}/files" ] && rm -fr ${TS3SERVER}/files && ln -s ${VOLUME}/files ${TS3SERVER}/files
+echo "OK"
+
+echo -n "4. Check if ts3server.ini exists in host-mounted volume... "
+if [ -f "${VOLUME}/ts3server.ini" ]; then
+    echo "OK"
+
+    echo "5. Starting TS3-Server with existing ts3server.ini"
+
+	exec ${TS3SERVER}/ts3server_minimal_runscript.sh \
+	    inifile="${VOLUME}/ts3server.ini"
+else
+	echo "NONE"
+
+    echo -n "Creating a new SQLDatabase ... "
+    sqlite3 "${VOLUME}/ts3server.sqlitedb" ""
+    ln -s ${VOLUME}/ts3server.sqlitedb ${TS3SERVER}/ts3server.sqlitedb
+    echo "OK"
+
+    echo "5. Starting TS3-Server and create new ${VOLUME}/ts3server.ini with SQLite3 database"
+
+	exec ${TS3SERVER}/ts3server_minimal_runscript.sh \
+		query_ip_whitelist="${VOLUME}/query_ip_whitelist.txt" \
+		query_ip_backlist="${VOLUME}/query_ip_blacklist.txt" \
+		logpath="${VOLUME}/logs/" \
+		licensepath="${VOLUME}/" \
+		inifile="${VOLUME}/ts3server.ini" \
+		createinifile=1
+fi
