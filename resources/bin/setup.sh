@@ -12,6 +12,7 @@ export PACKAGES=(
 	'mariadb-client'
 	'curl'
 	'sqlite3'
+	'bzip2'
 )
 
 pre_install() {
