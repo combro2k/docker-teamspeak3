@@ -28,7 +28,7 @@ pre_install() {
 install_teamspeak3()
 {
     curl -L --silent http://dl.4players.de/ts/releases/${TEAMSPEAK_VERSION}/teamspeak3-server_linux-amd64-${TEAMSPEAK_VERSION}.tar.bz2 \
-        | tar Jx -C /opt/ts3server --strip-components=1 || return 1
+        | tar jx -C /opt/ts3server --strip-components=1 || return 1
 
     ln -s /opt/ts3server/redist/libmariadb.so.2 /usr/lib/x86_64-linux-gnu/libmariadb.so.2 || return 1
 
