@@ -5,7 +5,7 @@ trap '{ echo -e "error ${?}\nthe command executing at the time of the error was\
 export DEBIAN_FRONTEND="noninteractive"
 
 # Versions
-export TEAMSPEAK_VERSION="3.0.12.4"
+export TEAMSPEAK_VERSION="3.0.13.3"
 
 # Packages
 export PACKAGES=(
